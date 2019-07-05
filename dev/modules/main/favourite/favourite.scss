@@ -1,0 +1,38 @@
+.favourite{
+	&__category{
+		padding: 5px 10px;
+		position: relative;
+		background-color: $primary;
+		height: $base-height;
+	}
+	&__link{
+		height: $base-height;
+		padding: 5px 10px;
+		background-color: darken($primary, 15%);
+		margin-bottom: 1px;
+		&:hover,
+		&.active{
+			background-color: darken($primary, 5%);
+			*{
+				color: #fff;
+			}
+		}
+		*{
+			color: rgba(255,255,255,0.6);
+		}
+	}
+	&__icon{
+		font-size: 18px;
+		margin-right: 5px;
+	}
+	&__text{
+		flex-grow: 1;
+		&:first-child{
+			text-align: left;
+		}
+		&:last-child{
+			text-align: right;
+			margin-left: 5px;
+		}
+	}
+}

@@ -1,0 +1,32 @@
+.login-in{
+	&-price,
+	&-deposit{
+		font-size: 18px;
+		font-weight: bold;
+	}
+	&-price{
+		text-transform: uppercase
+	}
+	&-deposit{
+		color: $primary
+	}
+	&-img{
+		width: 60px;
+		height: 60px;
+		position: relative;
+		text-align: center;
+	}
+	&-circle{
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		background-color: $primary;
+		height: 25px;
+		width: 25px;
+		border-radius: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: #fff;
+	}
+}

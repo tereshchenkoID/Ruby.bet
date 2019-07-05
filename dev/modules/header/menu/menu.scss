@@ -1,0 +1,31 @@
+.menu{
+	height: 100%;
+	&-item{
+		height: 100%;
+		margin: 0 10px;
+		font-size: 20px;
+		text-transform: uppercase;
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		&:before{
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			right: 0;
+			height: 3px;
+			width: 0;
+			background-color: $primary;
+		}
+		&:hover{
+			color: $primary
+		}
+		&.active{
+			&:before{
+				width: 100%
+			}
+		}
+	}
+}

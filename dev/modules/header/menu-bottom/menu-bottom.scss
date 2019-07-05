@@ -1,0 +1,51 @@
+.bottom{
+	height: 100%;
+	position: relative;
+	height: 40px;
+	background-color: #07222d;
+	*{
+		height: 100%
+	}
+	&-menu-item{
+		margin-right: 10px;
+		padding: 0 5px;
+		position: relative;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		height: 100%;
+		color: $m-white;
+		text-transform: uppercase;
+		&:before{
+			content: "";
+			position: absolute;
+			height: 2px;
+			width: 0;
+			background-color: $primary;
+			left: 0;
+			bottom: 0;
+			right: 0;
+		}
+		&:hover,
+		&.active{
+			&:before{
+				width: 100%;
+				transition: all .5s
+			}
+		}
+	}
+	&-menu-link{
+		height: auto;
+		&-item{
+			padding: 10px 5px;
+			color: $m-white;
+			&.last{
+				padding-right: 0
+			}
+			&:hover,
+			&.active{
+				color: #fff
+			}
+		}
+	}
+}

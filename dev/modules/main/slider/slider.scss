@@ -1,0 +1,39 @@
+.slider{
+	&__wrapper{
+		overflow: hidden;
+		//border: 1px solid red;
+	}
+	&__track{
+		position: relative;
+		//width: 100%;
+		height: 100%;
+		display: flex;
+		//overflow: hidden;
+		white-space: nowrap;
+		//width: 10000px;
+		transition: all .5s;
+	}
+	&__prev, 
+	&__next{
+		z-index: 1;
+		height: 100%;
+		width: 30px;
+		position: absolute;
+		background-color: $primary;
+		opacity: 0.8;
+		& > *{
+			color: #fff;
+			font-size: 22px;
+		}
+		&:hover,
+		&.active{
+			opacity: 1;
+		}
+	}
+	&__prev{
+		left: 0;
+	}
+	&__next{
+		right: 0;
+	}
+}

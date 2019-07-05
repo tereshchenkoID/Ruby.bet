@@ -1,0 +1,17 @@
+.search{
+	&__field{
+		background-color: #314750;
+		color: #98a3a8;
+		border: 0;
+		border-radius: 3px;
+		margin-right: 5px;
+	}
+	&__button{
+		border-radius: 3px;
+		&:after{
+			content: '\f002';
+			font-family: FontAwesome;
+			font-size: 14px;
+		}
+	}
+}

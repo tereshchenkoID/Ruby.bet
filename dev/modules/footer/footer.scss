@@ -1,0 +1,11 @@
+$padding-left-right: 10%;
+.footer{
+	.partner,
+	.about,
+	.info,
+	.copyright{
+		& > .container{
+			padding: 30px 0;
+		}
+	}
+}

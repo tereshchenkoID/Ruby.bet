@@ -1,0 +1,24 @@
+.partner{
+	background-color: #2f030c;
+	&-wrapper{
+		&:first-child{
+			margin-left: $padding-left-right
+		}
+		&:last-child{
+			margin-right: $padding-left-right
+		}
+	}
+	&-item{
+		height: 50px;
+		width: 50px;
+		margin: 20px;
+		border-radius: 100%;
+		background-color: #fff;
+		&:first-child{
+			margin-left: 0
+		}
+		&:last-child{
+			margin-right: 0
+		}
+	}
+}

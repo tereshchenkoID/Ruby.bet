@@ -1,0 +1,14 @@
+.copyright{
+	.plus18{
+		height: 45px;
+		width: 45px;
+		border-radius: 100%;
+		border: 2px solid rgba(255, 255, 255, 0.4);
+		overflow: hidden;
+		position: relative;
+		margin-left: $padding-left-right;
+		*{
+			@include absolute-center;
+		}
+	}
+}

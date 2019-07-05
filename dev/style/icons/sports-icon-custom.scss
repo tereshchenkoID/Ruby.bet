@@ -1,0 +1,147 @@
+.star{
+	cursor: pointer;
+	&:before{
+		content: '\f005';
+		font-family: FontAwesome;
+		font-size: 16px;
+		color: darken(#fff, 50%);
+		z-index: 2;
+	}
+	&:hover,
+	&.active{
+		&:before{
+			color: #fff;
+		}
+	}
+}
+
+.up{
+	&:before{
+		color: #03c503;
+		content: "\f063";
+		transform: rotate(-135deg) translate(20%, -10%);
+	}
+}
+.down{
+	&:before{
+		color: #ed1c24;
+		content: "\f063";
+		transform: rotate(-45deg) translate(0, -15%);
+	}
+}
+.up,
+.down{
+	white-space: nowrap;
+	&:before{
+		display: inline-block;
+		font-family: FontAwesome;
+		font-size: 0.8em;
+		margin-left: 5px;
+		margin-right: 3px;
+	}
+}
+.blick{
+	&:before{
+		animation: blick .7s linear 5;
+	}
+}
+
+.sport-icon{
+	padding: 0;
+	width: 23px!important;
+	height: 13px!important;
+	background-color: transparent;
+	border: none;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	position: relative;
+	z-index: 9;
+	&.soccer{
+		background-image: url(../img/img/icon-sport/ML1BW.svg);
+		&:hover{
+			background-image: url(../img/img/icon-sport/ML1.svg);
+		}
+	}
+	&.play{
+		background-image: url(../img/img/icon-sport/MLVideoBW.svg);
+		&:hover{
+			background-image: url(../img/img/icon-sport/MLVideo.svg);
+		}
+	}
+	&.cricket{
+		background-image: url(../img/img/icon-sport/ML3BW.svg);
+		&:hover{
+			background-image: url(../img/img/icon-sport/ML3.svg);
+		}
+	}
+	&.golf{
+		background-image: url(../img/img/icon-sport/ML7BW.svg);
+		&:hover{
+			background-image: url(../img/img/icon-sport/ML7.svg);
+		}
+	}
+	&.tennis{
+		background-image: url(../img/img/icon-sport/ML13BW.svg);
+		&:hover{
+			background-image: url(../img/img/icon-sport/ML13Grass.svg);
+		}
+	}
+	&.tennis-2{
+		background-image: url(../img/img/icon-sport/ML13BW.svg);
+		&:hover{
+			background-image: url(../img/img/icon-sport/ML13Clay.svg);
+		}
+	}
+	&.tennis-3{
+		background-image: url(../img/img/icon-sport/ML13BW.svg);
+		&:hover{
+			background-image: url(../img/img/icon-sport/ML13Hard.svg);
+		}
+	}
+	&.baseball{
+		width: 19px;
+		height: 19px;
+		background-image: url(../img/img/icon-sport/ML16BW.svg);
+		&:hover{
+			background-image: url(../img/img/icon-sport/ML16.svg);
+		}
+	}
+	&.basketball{
+		background-image: url(../img/img/icon-sport/ML18BW.svg);
+		&:hover{
+			background-image: url(../img/img/icon-sport/ML18.svg);
+		}
+	}
+	&.volleyball{
+		background-image: url(../img/img/icon-sport/ML91BW.svg);
+		&:hover{
+			background-image: url(../img/img/icon-sport/ML91.svg);
+		}
+	}
+	&.handball{
+		background-image: url(../img/img/icon-sport/ML78BW.svg);
+		&:hover{
+			background-image: url(../img/img/icon-sport/ML78.svg);
+		}
+	}
+	&.hockey{
+		background-image: url(../img/img/svg/icon-sport/ML17BW.svg);
+		&:hover{
+			background-image: url(../img/img/icon-sport/ML17.svg);
+		}
+	}
+	&.darts{
+		background-image: url(../img/img/icon-sport/ML15BW.svg);
+		height: 23px!important;
+		&:hover{
+			background-image: url(../img/img/icon-sport/ML15.svg);
+		}
+	}
+
+	&.rugby{
+		background-image: url(../img/img/icon-sport/ML36BW.svg);
+		&:hover{
+			background-image: url(../img/img/icon-sport/ML36.svg);
+		}
+	}
+}

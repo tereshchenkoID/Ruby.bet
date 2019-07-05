@@ -1,0 +1,28 @@
+.sign-in{
+	&-wrapper{
+		width: 130px;
+		margin-right: 5px;
+	}
+	&-field{
+		background-color: #fff;
+		border: 1px solid #bbbbbb;
+	}
+	&-button{
+		&:before{
+			content: '\f105';
+			width: 20px;
+			font-family: FontAwesome;
+			font-size: 20px;
+		}
+	}
+	&-link{
+		position: absolute;
+		bottom: -15px;
+		left: 0;
+		font-size: 10px;
+		&:hover,
+		&.active{
+			text-decoration: none
+		}
+	}
+}

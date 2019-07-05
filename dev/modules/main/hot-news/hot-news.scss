@@ -1,0 +1,32 @@
+.hot{
+	width: 100%;
+	height: $base-height;
+	background-color: $third;
+	&-title{
+		width: 100px;
+		position: relative;
+		background-color: $primary;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		*{
+			color: #fff;
+		}
+	}
+	&-item{
+		padding: 0 10px 0 15px;
+		position: relative;
+		&:before{
+			content: "";
+			height: 5px;
+			width: 5px;
+			position: absolute;
+			top: 50%;
+			left: 5px;
+			border-radius: 100%;
+			transform: translateY(-50%) rotate(45deg);
+			background-color: #fff;
+		}
+	}
+}

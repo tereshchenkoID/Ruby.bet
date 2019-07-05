@@ -1,0 +1,13 @@
+.header{
+	margin-bottom: 10px;
+	.nav{
+		background-color: #fff;
+		height: 88px;
+		& > *{
+			height: 100%
+		}
+		.content.center{
+			height: 100%;
+		}
+	}
+}
