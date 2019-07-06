@@ -144,4 +144,10 @@
 			background-image: url(../img/img/icon-sport/ML36.svg);
 		}
 	}
+	&.australian{
+		background-image: url(../img/img/icon-sport/ML36BW.svg);
+		&:hover{
+			background-image: url(../img/img/icon-sport/ML36.svg);
+		}
+	}
 }

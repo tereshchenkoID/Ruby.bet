@@ -66,4 +66,20 @@
 			background-color: darken($primary, 10%)
 		}
 	}
+	&.disabled{
+		position: relative;
+		pointer-events: none;
+		&:after {
+			content: "";
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			background-color: rgba(40, 20, 32, 0.5);
+		}
+		.lock{
+			margin-left: 5px;
+		}
+	}
 }

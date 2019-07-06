@@ -64,7 +64,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		&--border{
+		&.border{
 			border-left: 1px solid #000;
 		}
 	}
@@ -82,12 +82,59 @@
 		color: #000;
 	}
 }
+
+.inplaySubcategory{
+	background-color: #281420;
+	height: $base-height;
+	padding: 0 10px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	position: relative;
+	margin-bottom: 1px;
+	&:before{
+		content: "";
+		position: absolute;
+		font-family: FontAwesome;
+		font-size: 20px;
+		color: #fff;
+		right: 10px;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+	&:hover{
+		background-color: lighten(#281420, 5%)
+	}
+	&.closed{
+		&:hover{
+			&:before{
+				content: "\f107";
+			}
+		}
+	}
+	&.open{
+		&:hover{
+			&:before{
+				content: "\f106";
+			}
+		}
+	}
+
+	.icon{
+		height: auto;
+		max-width: 23px;
+		margin-right: 5px;
+	}
+	.font{
+		color: #fff;
+	}
+}
+
+
+
 .inplayTable{
 	height: 72px;
 	margin-bottom: 1px;
-	&-wrapper{
-		background-color: rgba(255,255,255,0.3)
-	}
 	&__left,
 	&__right{
 		height: 100%
@@ -170,8 +217,31 @@
 		background-color: #281420;
 		display: flex;
 		flex-direction: column;
-		& > div{
-			height: 50%
+		.number-of-goals,
+		.next-goal,
+		.main-bets{
+			//border: 1px solid red;
+			height: 100%;
+			display: none;
+			& > div{
+				height: 50%
+			}
+			&.active{
+				display: block;
+			}
+			&.disabled{
+				position: relative;
+				pointer-events: none;
+				&:after {
+					content: "";
+					position: absolute;
+					left: 0;
+					right: 0;
+					top: 0;
+					bottom: 0;
+					background-color: rgba(40, 20, 32, 0.5);
+				}
+			}
 		}
 		.inplayTeamButtons{
 			width: calc(100% - 120px);
@@ -187,6 +257,8 @@
 			}
 		}
 	}
+
+
 
 	&.soccer{
 		.result-table-right{

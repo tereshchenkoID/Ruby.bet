@@ -3,14 +3,7 @@ var Inplay = function(){
 	this.html = '';
 	this.date;
 	this.active;
-}
-
-Inplay.prototype.buttonCoefficientTemplate = function(name, coefficient, it){
-	return `<button class="button coefficient" data-it="${it}">
-				<p class="star"></p>
-				<p class="font ellipsis mra">${name}</p>
-				<p class="font down blick">${coefficient}</p>
-			</button>`;
+	this.menu = 'MB';
 }
 
 
@@ -21,24 +14,24 @@ Inplay.prototype.forSliderTemplate = function(data){
 			</a>`;
 }
 
-Inplay.prototype.submenuTemplate = function(name, it, id){
+Inplay.prototype.inplayCategoryTemplate = function(name, it, id){
 	return `<div class="inplayCategory" data-it="${it}">
 				<div class="flex-container align-middle">
 					<p class="sports-${id}"></p>
 					<p class="font primary ml text-transform">${name}:</p>
 				</div>
 				<div class="flex-container align-middle inplayMenu">
-					<a class="font text-uppercase inplayMenu__item inplayMenu__item--border">Main Bets</a>
-					<a class="font text-uppercase inplayMenu__item inplayMenu__item--border">Number of goals</a>
-					<a class="font text-uppercase inplayMenu__item inplayMenu__item--border">Next goal</a>
+					<a class="font text-uppercase inplayMenu__item border" data-menu="MB">Main Bets</a>
+					<a class="font text-uppercase inplayMenu__item border" data-menu="NOG">Number of goals</a>
+					<a class="font text-uppercase inplayMenu__item border" data-menu="NG">Next goal</a>
 				</div>
 			</div>`;
 }
 
-Inplay.prototype.subcategoryTemplate = function(name, it, catIt){
-	return `<div class="play-subcategory closed" data-catit="${catIt}" data-it="${it}">
-				<img src="./img/img/icon_country/Ukraine.ico" class="play-subcategory-icon">
-				<p class="play-subcategory-text font">${name}</p>	
+Inplay.prototype.inplaySubCategoryTemplate = function(name, it, catIt){
+	return `<div class="inplaySubcategory closed" data-catit="${catIt}" data-it="${it}">
+				<img src="./img/img/icon_country/Ukraine.ico" class="icon">
+				<p class="font">${name}</p>	
 			</div>`;
 }
 
@@ -155,10 +148,21 @@ Inplay.prototype.forCricketTemplate = function(data, self, play){
 			${self.optionsTemplate(play)}`;
 }
 
-Inplay.prototype.forGreyhoundsTemplate = function(data, self, play){
-	return  `<div class="flex-container align-center-middle inplayTeamScoreInfo">
-				<p class="font ellipsis text-left team-name">${data.NA}</p>
-			</div>`;
+Inplay.prototype.forAustralianRulesTemplate = function(data, self, play){
+	return  `${self.checkTime(data, self)}
+			<div class="inplayTeamScoreInfo">
+				<p class="font ellipsis text-left team-name">${self.separateTeam(data.NA)[0]}</p>
+				<p class="font ellipsis text-left team-name">${self.separateTeam(data.NA)[1]}</p>
+			</div>
+			<table class="inplayTeamScoreTableInfo">
+				<tr>
+					<td><p class="font md primary">${self.separateScore(data.SS)[0]}</p></td>
+				</tr>
+				<tr>
+					<td><p class="font md primary">${self.separateScore(data.SS)[1]}</p></td>
+				</tr>
+			</table>
+			${self.optionsTemplate(play)}`;
 }
 
 Inplay.prototype.forDartsTemplate = function(data, self, play){
@@ -170,6 +174,94 @@ Inplay.prototype.forDartsTemplate = function(data, self, play){
 			${self.optionsTemplate(play)}`;
 }
 
+Inplay.prototype.forBoxingMMATemplate = function(data, self, play){
+	return  `<div class="inplayTeamScoreInfo">
+				<p class="font ellipsis text-left team-name">${self.separateTeam(data.NA)[0]}</p>
+				<p class="font ellipsis text-left team-name">${self.separateTeam(data.NA)[1]}</p>
+			</div>
+			${self.optionsTemplate(play)}`;
+}
+
+/*Inplay.prototype.forGreyhoundsTemplate = function(data, self, play){
+	return  `<div class="flex-container align-center-middle inplayTeamScoreInfo">
+				<p class="font ellipsis text-left team-name">${data.NA}</p>
+			</div>`;
+}*/
+
+
+/*Inplay.prototype.forMotorbikesTemplate = function(data, self, play){
+	return  `<div class="flex-container align-center-middle inplayTeamScoreInfo">
+				<p class="font ellipsis team-name">${data.NA}</p>
+			</div>`;
+}*/
+
+Inplay.prototype.numberOfGoals = function(self){
+	var html = `<div class="number-of-goals ${(self.menu == 'NOG') ? 'active' : ''}" data-menu-wrap="NOG">
+					<p class="font white">Number Of Goals</p>
+				</div>`;
+	return html;
+}
+
+Inplay.prototype.nextGoal = function(self){
+	var html = `<div class="next-goal ${(self.menu == 'NG') ? 'active' : ''}" data-menu-wrap="NG">
+					<p class="font white">Next Goal</p>
+				</div>`;
+	return html;
+}
+
+Inplay.prototype.mainBets = function(data, self){
+	var html = '';
+	if (data.MA[0]) {
+		var suBlock,
+			suButton;
+		suBlock = (data.MA[0].SU == 1) ? 'disabled' : '';
+		html +=	`<div class="main-bets ${suBlock} ${(self.menu == 'MB') ? 'active' : ''}" 
+					data-it="${data.MA[0].IT}" 
+					data-menu-wrap="MB">
+
+					<div class="flex-container align-middle">
+						<p class="font white ml">${data.MA[0].NA}</p>
+					</div>
+					<div class="flex-container align-middle">
+						<button class="button reload reload--left">
+							<i class="fa fa-angle-left"></i>
+						</button>
+						<div class="flex-container align-middle inplayTeamButtons">`;
+						$.each(data.MA[0].PA, function(index, item){
+							suButton = (item.SU == 1 && suBlock == 1) ? 'disabled' : '';
+							html += `<button class="button coefficient ${suButton}" data-it="${item.IT}">`;				
+									if (index != 1 && data.MA[0].PA.length <= 3 && item.SU == 0) {
+										html += `<p class="star"></p>
+												 <p class="font ellipsis mra">${item.NA}</p>
+												 <p class="font down blick">${item.OD.D}</p>`;
+									}
+									else if(data.MA[0].PA.length == 2 && item.SU == 0){
+										html += `<p class="star"></p>
+												 <p class="font ellipsis mra">${item.NA}</p>
+												 <p class="font down blick">${item.OD.D}</p>`;
+									}
+									else if(item.SU == 1){
+										html += `<p class="font ellipsis mra">${item.NA}</p>
+												 <span class="fa fa-lock lock"></span>`;
+									}
+									else{
+										html += `<p class="font ellipsis mra">${item.NA}</p>
+												 <p class="font down blick">${item.OD.D}</p>`;
+									}
+							html +=	`</button>`;
+						});
+			html += `	</div>
+						<button class="button reload reload--right">
+							<i class="fa fa-angle-right"></i>
+						</button>
+						<button class="button coefficient last">
+							<p class="font ellipsis">+${data.LM}</p>
+						</button>
+					</div>
+				</div>`;
+	}
+	return html;
+}
 
 Inplay.prototype.resultsInplayTemplate = function(data, play, catIt){
 	var self = this;
@@ -194,6 +286,9 @@ Inplay.prototype.resultsInplayTemplate = function(data, play, catIt){
 						case "Volleyball":
 							html += self.forBeachVolleyballTemplate(data, self, play);
 						break;
+						case "Boxing/MMA":
+							html += self.forBoxingMMATemplate(data, self, play);
+						break;
 						case "Beach Volleyball":
 							html += self.forBeachVolleyballTemplate(data, self, play);
 						break;
@@ -212,50 +307,55 @@ Inplay.prototype.resultsInplayTemplate = function(data, play, catIt){
 						case "Darts":
 							html += self.forDartsTemplate(data, self, play);
 						break;
+						case "Australian Rules":
+							html += self.forAustralianRulesTemplate(data, self, play);
+						break;
+						case "Motorbikes":
+							html += self.forMotorbikesTemplate(data, self, play);
+						break;
 						default:
 							html += self.forFootballTemplate(data, self, play);
 					}
-			html += `</div>`;
-					if (data.MA[0]) {
-			  html +=	`<div class="inplayTable__right" data-it="${data.MA[0].IT}">
-							<div class="flex-container align-middle">
-								<p class="font white ml">${data.MA[0].NA}</p>
-							</div>
-							
-							<div class="flex-container align-middle">
-								<button class="button reload">
-									<i class="fa fa-angle-left"></i>
-								</button>
-								<div class="flex-container align-middle inplayTeamButtons">`;
-
-
-								$.each(data.MA[0].PA, function(index, item){
-								html += `<button class="button coefficient" data-it="${item.IT}">`;
-									console.log(data.MA[0].PA.length)
-										if (index != 1 && data.MA[0].PA.length <= 3) {
-											html += `<p class="star"></p>`;
-										}
-										else if(data.MA[0].PA.length == 2){
-											html += `<p class="star"></p>`;
-										}
-									html +=	`<p class="font ellipsis mra">${item.NA}</p>
-											 <p class="font down blick">${item.OD.D}</p>
-										</button>`;
-								});
-					html += `</div>
-								<button class="button reload">
-									<i class="fa fa-angle-right"></i>
-								</button>
-								 <button class="button coefficient last">
-									<p class="font ellipsis">+${data.LM}</p>
-								</button>
-							</div>
-						</div>`;
-					}
-			html += `</div>`;
-
+			html += `</div>
+					<div class="inplayTable__right">
+						${self.mainBets(data, self)}
+						${self.numberOfGoals(self)}
+						${self.nextGoal(self)}
+					</div>
+				</div>`;
 	return html;
 }
+
+
+Inplay.prototype.clickInplayMenu = function(){
+	var self = this;
+	$(`[data-menu-wrap=${self.menu}]`).each(function(i, elem){
+		$(this).siblings("div").removeClass('active')
+		$(this).addClass('active');
+	});
+
+}
+
+Inplay.prototype.clickReload = function(el, direction){
+	$(el).removeClass('active');
+	if (direction == 'prev') {
+		if ($(el).prev().length == 0) {
+			$(el).parent().find("[data-menu-wrap]").last().addClass('active');
+		}
+		else{
+			$(el).prev().addClass('active');
+		}
+	}
+	else{
+		if ($(el).next().length == 0) {
+			$(el).parent().find("[data-menu-wrap]").first().addClass('active');
+		}
+		else{
+			$(el).next().addClass('active');
+		}
+	}
+}
+
 
 Inplay.prototype.checkTime = function(data, self){
 	var timer = '';
@@ -371,7 +471,9 @@ Inplay.prototype.initSlider = function(){
 	this.active = this.date.DATA[0].IT;
 	$('#inplay-forSlider .slider__track').html('');
 	$.each(self.date.DATA, function (index, item) {
-		self.html += self.forSliderTemplate(item);
+		if (item.ID != 75 && item.ID != 4 && item.ID != 24) {
+			self.html += self.forSliderTemplate(item);
+		}
 	});
 	$('#inplay-forSlider .slider__track').html(this.html);
 	slider.set('.inplaySlider');
@@ -390,12 +492,12 @@ Inplay.prototype.drawData = function(){
 	$.each(this.date.DATA, function (index, item) {
 		if (item.IT == self.active) {
 			self.html += '<div class="wrapper__item">'
-			self.html += self.submenuTemplate(item.NA, item.IT, item.ID)
+			self.html += self.inplayCategoryTemplate(item.NA, item.IT, item.ID)
 			var catIt = item.IT;
 			var play = item.NA
 			$.each(item.CT, function (index, item) {
 				if (self.checkValue(item, 'NA')) {
-					self.html += self.subcategoryTemplate(item.NA, item.IT, catIt)
+					self.html += self.inplaySubCategoryTemplate(item.NA, item.IT, catIt)
 					$.each(item.EV, function(index, item){
 						if (self.checkValue(item, 'NA')) {
 							self.html += self.resultsInplayTemplate(item, play, catIt)
@@ -424,9 +526,27 @@ var inplay = new Inplay();
 inplay.loadData();
 
 
-$(document).on('click',"#inplay-forSlider .slider__item",function(){
+$(document).on('click',".inplaySlider .slider__item",function(){
 	var attr = $(this).attr('data-it');
 	inplay.active = attr;
 	inplay.activeSlide();
+	inplay.menu = 'MB';
 	inplay.drawData();
 });
+
+$(document).on('click','.inplayMenu .inplayMenu__item',function(){
+	var attr = $(this).attr('data-menu');
+	inplay.menu = attr;
+	inplay.clickInplayMenu();
+});
+
+$(document).on('click','.reload--left',function(){
+	var parent = $(this).closest('[data-menu-wrap]');
+	inplay.clickReload(parent, 'prev')
+});
+
+$(document).on('click','.reload--right',function(){
+	var parent = $(this).closest('[data-menu-wrap]');
+	inplay.clickReload(parent, 'next')
+});
+

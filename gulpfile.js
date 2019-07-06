@@ -28,7 +28,7 @@ var paths = {
     css: {
         src: ['./dev/style/style.scss'],
         dest: './build/css',
-        watch: ['./dev/style/**/*.scss', './dev/**/*.scss'],
+        watch: ['./dev/style/**/*.scss', './dev/**/*.scss', './dev/**/*.css'],
     },
     js: {
         src1: './dev/js/**/*.js',
