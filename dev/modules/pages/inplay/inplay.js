@@ -1,9 +1,9 @@
 var Inplay = function(){
 	this.link = "http://bestline.bet/inplay/";
+	this.menu = 'MB';
 	this.html = '';
 	this.date;
 	this.active;
-	this.menu = 'MB';
 }
 
 
@@ -30,7 +30,7 @@ Inplay.prototype.inplayCategoryTemplate = function(name, it, id){
 
 Inplay.prototype.inplaySubCategoryTemplate = function(name, it, catIt){
 	return `<div class="inplaySubcategory closed" data-catit="${catIt}" data-it="${it}">
-				<img src="./img/img/icon_country/Ukraine.ico" class="icon">
+				<img src="./img/icon-country/Ukraine.ico" class="icon">
 				<p class="font">${name}</p>	
 			</div>`;
 }
@@ -48,152 +48,62 @@ Inplay.prototype.optionsTemplate = function(play){
 				<button class="sport-icon play team-button"></button>
 			</div>`;
 }
-				
-Inplay.prototype.forFootballTemplate = function(data, self, play){
+		
+Inplay.prototype.forPeriodTemplate = function(data, self, play){
 	return  `${self.checkTime(data, self)}
-				<div class="flex-container align-center-middle inplayTeamScoreInfo">
-					<p class="font ellipsis text-right team-name">${self.separateTeam(data.NA)[0]}</p>
-					<p class="font text-center team-score">${self.separateScore(data.SS)[0]}:${self.separateScore(data.SS)[1]}</p>
-					<p class="font ellipsis text-left team-name">${self.separateTeam(data.NA)[1]}</p>
-			 	</div>
+				<a class="flex-container align-center-middle inplayTeamScoreInfo" data-fi="${data.FI}" href="/#/event/">
+					<p class="font ellipsis text-right team-name">${base.s_NA(data.NA)[0]}</p>
+					<p class="font text-center team-score">${base.s_SS(data.SS)[0]}:${base.s_SS(data.SS)[1]}</p>
+					<p class="font ellipsis text-left team-name">${base.s_NA(data.NA)[1]}</p>
+			 	</a>
 			${self.optionsTemplate(play)}`;
 }
 
-Inplay.prototype.forTennisTemplate = function(data, self, play){
-	return `<div class="inplayTeamScoreInfo">
-				<p class="font ellipsis text-left team-name">${self.separateTeam(data.NA)[0]}</p>
-				<p class="font ellipsis text-left team-name">${self.separateTeam(data.NA)[1]}</p>
-			</div>
-			<table class="inplayTeamScoreTableInfo">
-				<tr>
-					<td></td>
-					<td><p class="font small primary">${self.separateScoreTennis(data.SS)[0].slice(0, -1)}</p></td>
-				</tr>
-				<tr>
-					<td><div class="circle"></div></td>
-					<td><p class="font small primary">${self.separateScoreTennis(data.SS)[1].slice(0, -1)}</p></td>
-				</tr>
-			</table>
-			${self.optionsTemplate(play)}`;
-}
-
-Inplay.prototype.forBasketballTemplate = function(data, self, play){
-	return  `${self.checkTime(data, self)}
-				<div class="flex-container align-center-middle inplayTeamScoreInfo">
-					<p class="font ellipsis text-right team-name">${self.separateTeam(data.NA)[0]}</p>
-					<p class="font text-center team-score">${self.separateScore(data.SS)[0]}:${self.separateScore(data.SS)[1]}</p>
-					<p class="font ellipsis text-left team-name">${self.separateTeam(data.NA)[1]}</p>
+Inplay.prototype.forSetTemplate = function(data, self, play){
+	var html = '';
+	html = `<div class="inplayTeamTime">
+				<div class="text-center">
+					<p class="font team-period">${self.separateScoreTennis(data.SS, 1).length} Set</p>
 				</div>
-			${self.optionsTemplate(play)}`;
-}
-
-Inplay.prototype.forBaseballTemplate = function(data, self, play){
-	return  `<div class="flex-container align-center-middle inplayTeamScoreInfo">
-				<p class="font ellipsis text-right team-name">${self.separateTeam(data.NA)[0]}</p>
-				<p class="font text-center team-score">${self.separateScore(data.SS)[0]}:${self.separateScore(data.SS)[1]}</p>
-				<p class="font ellipsis text-left team-name">${self.separateTeam(data.NA)[1]}</p>
 			</div>
-			${self.optionsTemplate(play)}`;
-}
-
-Inplay.prototype.forTableTennisTemplate = function(data, self, play){
-	return  `<div class="flex-container align-center-middle inplayTeamScoreInfo">
-				<p class="font ellipsis text-right team-name">${self.separateTeam(data.NA)[0]}</p>
-				<p class="font text-center team-score">${self.separateScore(data.SS)[0]}:${self.separateScore(data.SS)[1]}</p>
-				<p class="font ellipsis text-left team-name">${self.separateTeam(data.NA)[1]}</p>
-			</div>
-			${self.optionsTemplate(play)}`;
-}
-
-Inplay.prototype.forVolleyballTemplate = function(data, self, play){
-	return  `<div class="flex-container align-center-middle inplayTeamScoreInfo">
-				<p class="font ellipsis text-right team-name">${self.separateTeam(data.NA)[0]}</p>
-				<p class="font text-center team-score">${self.separateScore(data.SS)[0]}:${self.separateScore(data.SS)[1]}</p>
-				<p class="font ellipsis text-left team-name">${self.separateTeam(data.NA)[1]}</p>
-			</div>
-			${self.optionsTemplate(play)}`;
-}
-
-Inplay.prototype.forBeachVolleyballTemplate = function(data, self, play){
-	return  `<div class="flex-container align-center-middle inplayTeamScoreInfo">
-				<p class="font ellipsis text-right team-name">${self.separateTeam(data.NA)[0]}</p>
-				<p class="font text-center team-score">${self.separateScore(data.SS)[0]}:${self.separateScore(data.SS)[1]}</p>
-				<p class="font ellipsis text-left team-name">${self.separateTeam(data.NA)[1]}</p>
-			</div>
-			${self.optionsTemplate(play)}`;
-}
-
-Inplay.prototype.forBadmintonTemplate = function(data, self, play){
-	return  `<div class="flex-container align-center-middle inplayTeamScoreInfo">
-				<p class="font ellipsis text-right team-name">${self.separateTeam(data.NA)[0]}</p>
-				<p class="font text-center team-score">${self.separateScore(data.SS)[0]}:${self.separateScore(data.SS)[1]}</p>
-				<p class="font ellipsis text-left team-name">${self.separateTeam(data.NA)[1]}</p>
-			</div>
-			${self.optionsTemplate(play)}`;
-}
-
-Inplay.prototype.forCricketTemplate = function(data, self, play){
-	return  `<div class="inplayTeamScoreInfo">
-				<p class="font ellipsis text-left team-name">${self.separateTeam(data.NA)[0]}</p>
-				<p class="font ellipsis text-left team-name">${self.separateTeam(data.NA)[1]}</p>
-			</div>
-			<table class="inplayTeamScoreTableInfo">
-				<tr>
-					<td><p class="font small primary">${self.separateScoreCricket(data.SS)[0]}</p></td>
-				</tr>
-				<tr>
-					<td><p class="font small primary">${self.separateScoreCricket(data.SS)[1]}</p></td>
-				</tr>
-			</table>
-			${self.optionsTemplate(play)}`;
-}
-
-Inplay.prototype.forAustralianRulesTemplate = function(data, self, play){
-	return  `${self.checkTime(data, self)}
 			<div class="inplayTeamScoreInfo">
 				<p class="font ellipsis text-left team-name">${self.separateTeam(data.NA)[0]}</p>
 				<p class="font ellipsis text-left team-name">${self.separateTeam(data.NA)[1]}</p>
 			</div>
 			<table class="inplayTeamScoreTableInfo">
 				<tr>
-					<td><p class="font md primary">${self.separateScore(data.SS)[0]}</p></td>
+					<td>`;
+						if (data.PI[0] == 1)
+							html += '<div class="circle"></div>';
+			html += `</td>`;
+					$.each(self.separateScoreTennis(data.SS, 1), function (index, item) {
+						html += `<td>
+									<p class="font primary">${item}</p>
+								</td>`;
+					});
+			html += `<td>
+						<p class="font">${self.separateScore(data.XP)[0]}</p>
+					</td>
 				</tr>
 				<tr>
-					<td><p class="font md primary">${self.separateScore(data.SS)[1]}</p></td>
+					<td>`;
+						if (data.PI[1] == 1)
+							html += '<div class="circle"></div>';
+			html +=	`</td>`;
+					$.each(self.separateScoreTennis(data.SS, 2), function (index, item) {
+						html += `<td>
+									<p class="font primary">${item}</p>
+								</td>`;
+					});
+
+			html += `<td>
+						<p class="font">${self.separateScore(data.XP)[1]}</p>
+					</td>
 				</tr>
 			</table>
 			${self.optionsTemplate(play)}`;
+	return html;
 }
-
-Inplay.prototype.forDartsTemplate = function(data, self, play){
-	return  `<div class="flex-container align-center-middle inplayTeamScoreInfo">
-				<p class="font ellipsis text-right team-name">${self.separateTeam(data.NA)[0]}</p>
-				<p class="font text-center team-score">${self.separateScore(data.SS)[0]}:${self.separateScore(data.SS)[1]}</p>
-				<p class="font ellipsis text-left team-name">${self.separateTeam(data.NA)[1]}</p>
-			</div>
-			${self.optionsTemplate(play)}`;
-}
-
-Inplay.prototype.forBoxingMMATemplate = function(data, self, play){
-	return  `<div class="inplayTeamScoreInfo">
-				<p class="font ellipsis text-left team-name">${self.separateTeam(data.NA)[0]}</p>
-				<p class="font ellipsis text-left team-name">${self.separateTeam(data.NA)[1]}</p>
-			</div>
-			${self.optionsTemplate(play)}`;
-}
-
-/*Inplay.prototype.forGreyhoundsTemplate = function(data, self, play){
-	return  `<div class="flex-container align-center-middle inplayTeamScoreInfo">
-				<p class="font ellipsis text-left team-name">${data.NA}</p>
-			</div>`;
-}*/
-
-
-/*Inplay.prototype.forMotorbikesTemplate = function(data, self, play){
-	return  `<div class="flex-container align-center-middle inplayTeamScoreInfo">
-				<p class="font ellipsis team-name">${data.NA}</p>
-			</div>`;
-}*/
 
 Inplay.prototype.numberOfGoals = function(self){
 	var html = `<div class="number-of-goals ${(self.menu == 'NOG') ? 'active' : ''}" data-menu-wrap="NOG">
@@ -254,9 +164,9 @@ Inplay.prototype.mainBets = function(data, self){
 						<button class="button reload reload--right">
 							<i class="fa fa-angle-right"></i>
 						</button>
-						<button class="button coefficient last">
+						<a class="button coefficient last inplayLM" data-fi="${data.FI}" href="/#/event/">
 							<p class="font ellipsis">+${data.LM}</p>
-						</button>
+						</a>
 					</div>
 				</div>`;
 	}
@@ -272,31 +182,32 @@ Inplay.prototype.resultsInplayTemplate = function(data, play, catIt){
 					<div class="flex-container align-middle inplayTable__left">`
 					switch (play) {
 						case "Soccer":
-							html += self.forFootballTemplate(data, self, play);
+							html += self.forPeriodTemplate(data, self, play);
 						break;
 						case "Tennis":
-							html += self.forTennisTemplate(data, self, play);
+							html += self.forSetTemplate(data, self, play);
 						break;
+						case "Table Tennis":
+							html += self.forSetTemplate(data, self, play);
+						break;
+						case "Badminton":
+							html += self.forSetTemplate(data, self, play);
+						break;
+						case "Volleyball":
+							html += self.forSetTemplate(data, self, play);
+						break;
+						case "Beach Volleyball":
+							html += self.forSetTemplate(data, self, play);
+						break;
+					/*						
 						case "Baseball":
 							html += self.forBaseballTemplate(data, self, play);
 						break;
 						case "Basketball":
 							html += self.forBasketballTemplate(data, self, play);
 						break;
-						case "Volleyball":
-							html += self.forBeachVolleyballTemplate(data, self, play);
-						break;
 						case "Boxing/MMA":
 							html += self.forBoxingMMATemplate(data, self, play);
-						break;
-						case "Beach Volleyball":
-							html += self.forBeachVolleyballTemplate(data, self, play);
-						break;
-						case "Table Tennis":
-							html += self.forTableTennisTemplate(data, self, play);
-						break;
-						case "Badminton":
-							html += self.forBadmintonTemplate(data, self, play);
 						break;
 						case "Greyhounds":
 							html += self.forGreyhoundsTemplate(data, self, play);
@@ -313,8 +224,9 @@ Inplay.prototype.resultsInplayTemplate = function(data, play, catIt){
 						case "Motorbikes":
 							html += self.forMotorbikesTemplate(data, self, play);
 						break;
+					*/
 						default:
-							html += self.forFootballTemplate(data, self, play);
+							html += self.forPeriodTemplate(data, self, play);
 					}
 			html += `</div>
 					<div class="inplayTable__right">
@@ -326,14 +238,12 @@ Inplay.prototype.resultsInplayTemplate = function(data, play, catIt){
 	return html;
 }
 
-
 Inplay.prototype.clickInplayMenu = function(){
 	var self = this;
 	$(`[data-menu-wrap=${self.menu}]`).each(function(i, elem){
 		$(this).siblings("div").removeClass('active')
 		$(this).addClass('active');
 	});
-
 }
 
 Inplay.prototype.clickReload = function(el, direction){
@@ -356,21 +266,30 @@ Inplay.prototype.clickReload = function(el, direction){
 	}
 }
 
-
 Inplay.prototype.checkTime = function(data, self){
 	var timer = '';
-	var half  = '';                
+	var half  = '';
 	if (data.DC == 1) {
-	  if (data.TT == 1 || data.TM > 0) timer = self.timer (data.TU, data.TM, data.TS); else timer = '00:00';
-	  if (data.TM >= 45) {
-	    half = '2nd Half';
-	  } else {
-	    half = '1st Half';
-	  }
-	  if (data.TM == 45 && data.TT == 0) {
-	    half = 'Half Time';
-	    timer = '45:00'
-	  }
+		if (data.TT == 1 || data.TM > 0){
+			timer = self.timer (data.TU, data.TM, data.TS);
+		}
+		else
+			timer = '00:00';
+
+		if (data.TM >= 45)
+		  half = '2nd Half';
+		else
+		  half = '1st Half';
+
+		if (data.TM == 45 && data.TT == 0) {
+		  half = 'Half Time';
+		  timer = '45:00'
+		}
+
+		if (data.TT == 0 && data.TU == '') {
+			half = '1st Half';
+			timer = self.timerTT(data.TU, data.TM, data.TS);
+		}
 	}
 	return self.timeTemplate(half, timer, data);
 }
@@ -378,30 +297,41 @@ Inplay.prototype.checkTime = function(data, self){
 Inplay.prototype.timer = function(etu, etm, ets) {
 	etu = etu.toString();
 	etm = etm.toString();
-	ets = ets.toString();      
-
-	y = etu.substring(0,4); ho = etu.substring (8,10);
-	m = etu.substring(4,6); mi = etu.substring(10,12);
-	d = etu.substring(6,8); si = etu.substring(12,14);
-		val = y+'-'+m+'-'+d+' '+ho+':'+mi+':'+si;
-	var ts = new Date(val).getTime()/1000;
+	ets = ets.toString();
+	years = etu.substring(0,4); 
+	month = etu.substring(4,6); 
+	day = etu.substring(6,8);
+	hours = etu.substring (8,10);
+	minute = etu.substring(10,12);
+	second = etu.substring(12,14);
+	date = years+'-'+month+'-'+day+' '+hours+':'+minute+':'+second;
+	var ts = new Date(date).getTime()/1000;
 	var tn = new Date().getTime()/1000;
-
 	dt = Math.floor(tn - ts + etm*60 + ets - 120*60);
-
 	min = Math.floor(dt / 60);
 	sec = dt - min * 60;
-
 	if (min<10) min = '0'+min; 
 	if (sec<10) sec = '0'+sec; 
-
 	timer = min+':'+sec;
+	return timer;
+}
 
+Inplay.prototype.timerTT = function(etm, ets) {
+	if (etm<10) etm = '0'+etm; 
+	if (ets<10) ets = '0'+ets; 
+	timer = etm+':'+ets;
 	return timer;
 }
 
 Inplay.prototype.startTimer = function(){
 	var self = this;
+	$('[data-tt=0]').each(function(i, elem){
+		var tm = $(this).data("tm");
+		var ts = $(this).data("ts");
+		var timer = self.timerTT(tm, ts);
+		$(this).find('.team-time').text(timer);
+	});
+
 	setInterval(function(){
 		$('[data-tt=1]').each(function(i, elem){
 			var tu = $(this).data("tu");
@@ -417,40 +347,27 @@ Inplay.prototype.checkValue = function(obj, value){
 	return obj.hasOwnProperty(value)
 }
 
-Inplay.prototype.separateTeam = function(data){
-	var team = data.split('vs')
-	return team;
-}
-
-Inplay.prototype.separateScore = function(data, separate){
-	if (data) {
-		return data.split('-');
-	}
-	else{
-		return [0, 0];
-	}
-}
-
 Inplay.prototype.separateScoreCricket = function(data){
 	var score = data.split(',');
 	return score;
 }
 
-Inplay.prototype.separateScoreTennis  = function(data){
-	var score = [];
-	score[0] = '';
-	score[1] = '';
+Inplay.prototype.separateScoreTennis  = function(data, count){
+	var scoreFirst = [];
+	var scoreSecond = [];
 	var res = data.split(',');
 	if (res.length > 0) {
 		for (var i = 0; i < res.length; i++) {
 			var a = res[i].split('-');
-			score[0] += a[0]+',';
-			score[1] += a[1]+',';
+			scoreFirst.push(a[0]);
+			scoreSecond.push(a[1]);
 		}
 	}
-	return score;
+	if (count == 1)
+		return scoreFirst;
+	else
+		return scoreSecond;
 }
-
 
 Inplay.prototype.loadData = function(data){
 	var self = this;
@@ -516,11 +433,9 @@ Inplay.prototype.drawData = function(){
 		}
 
 	});
-	self.startTimer();
 	$('#inplay-forTable').html(this.html);
+	self.startTimer();
 };
-
-
 
 var inplay = new Inplay();
 inplay.loadData();
@@ -550,3 +465,12 @@ $(document).on('click','.reload--right',function(){
 	inplay.clickReload(parent, 'next')
 });
 
+$(document).on('click','.inplayTeamScoreInfo',function(){
+	var attr = $(this).attr('data-fi');
+	document.cookie = `eventFi=${attr}`;
+});
+
+$(document).on('click','.inplayLM',function(){
+	var attr = $(this).attr('data-fi');
+	document.cookie = `eventFi=${attr}`;
+});

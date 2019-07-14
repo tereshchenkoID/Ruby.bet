@@ -28,7 +28,11 @@ var paths = {
     css: {
         src: ['./dev/style/style.scss'],
         dest: './build/css',
-        watch: ['./dev/style/**/*.scss', './dev/**/*.scss', './dev/**/*.css'],
+        watch: [
+            './dev/style/**/*.scss',
+            './dev/**/*.scss',
+            './dev/**/*.css'
+        ],
     },
     js: {
         src1: './dev/js/**/*.js',
@@ -41,14 +45,25 @@ var paths = {
         ]
     },
     img: {
-        src: ['./dev/**/img/**/*'],
+        src: [
+            './dev/img/**/*',
+            './dev/modules/**/img/*', 
+        ],
         dest: './build/img/',
-        watch: ['./dev/**/img/**/*']
+        watch: [
+            './dev/**/img/**/*',
+            './dev/modules/**/img/**/*'
+        ]
     },
     fonts: {
         src: './dev/fonts/**/*',
         dest: './build/fonts',
         watch: './dev/fonts/**/*' 
+    },
+    json: {
+        src: './dev/**/*.json',
+        dest: './build',
+        watch: './dev/**/*.json' 
     }
 };
 
@@ -130,6 +145,13 @@ gulp.task('fonts', function () {
         .pipe(browserSync.reload({ stream: true }));
 });
 
+gulp.task('json', function () {
+    return gulp.src(paths.json.src)
+        .pipe(plumber())
+        .pipe(gulp.dest(paths.json.dest))
+        .pipe(browserSync.reload({ stream: true }));
+});
+
 gulp.task('server', function () {
     browserSync.init({
         server: { 
@@ -148,6 +170,7 @@ gulp.task('server', function () {
     gulp.watch(paths.js.watch, gulp.parallel('js'));
     gulp.watch(paths.img.watch, gulp.parallel('img'));
     gulp.watch(paths.fonts.watch, gulp.parallel('fonts'));
+    gulp.watch(paths.json.watch, gulp.parallel('json'));
 });
 
 
@@ -157,7 +180,8 @@ gulp.task('build', gulp.series(
     'css',
     'js',
     'img',
-    'fonts'
+    'fonts',
+    'json'
 ));
 
 gulp.task('dev', gulp.series(

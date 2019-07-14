@@ -69,6 +69,38 @@ var Load = function(){
 					"css": false,
 					"lang": false
 				}
+			},
+			"event":{
+				"hot-news": { 
+					"wrap": "#event-forMainHotNews",
+					"css": false,
+					"lang": false
+				},
+				"favourite": { 
+					"wrap": "#event-forMainFavourite",
+					"css": false,
+					"lang": false
+				},
+				"classification": { 
+					"wrap": "#event-forMainClassification",
+					"css": false,
+					"lang": false
+				},
+				"search": {
+					"wrap": "#event-forSearch",
+					"css": false,
+					"lang": false
+				},
+				"betslip": {
+					"wrap": "#event-forBetslip",
+					"css": false,
+					"lang": false
+				},
+				"scoreboard": {
+					"wrap": "#event-forScoreboard",
+					"css": false,
+					"lang": false
+				}
 			}
 		}
 	};
@@ -167,8 +199,8 @@ Load.prototype.loadPages = function() {
 		success: function(data){
 			$(".main").html(data);
 			self.currentUrl = self.getCurrentUrl();
-			self.loadScripts(`../modules/pages/${path}/${path}.js`);
 			self.loadModules(self.config['pages'][self.currentUrl], "main");
+			self.loadScripts(`../modules/pages/${path}/${path}.js`);
 			self.checkActiveMenuItem(self);
 			$('.loader').hide();
 		},
@@ -180,3 +212,33 @@ Load.prototype.loadPages = function() {
 
 var load = new Load();
 load.loadPages();
+
+
+
+
+var Base = function (){}
+
+Base.prototype.s_NA= function(data){
+	var team = data.split('vs')
+	return team;
+}
+
+Base.prototype.s_SS = function(data, separate){
+	if (data) {
+		return data.split('-');
+	}
+	else{
+		return [0, 0];
+	}
+}
+
+
+Base.prototype.getCookie = function(name) {
+  var matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+
+var base = new Base();

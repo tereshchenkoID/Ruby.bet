@@ -1,0 +1,70 @@
+$inform-size: 16px;
+.information{
+	padding: 10px;
+	height: calc(100% - 1px);
+	position: relative;
+	background-color: #281420;
+	.star{
+		&:before{
+			color: #731225;
+		}
+	}
+	&-icon{
+		color: #fff;
+		margin-right: 5px;
+		&.star{
+			&:before{
+				font-size: 18px;
+			}
+		}
+	}
+	&-separate{
+		border: 0;
+		margin-left: 10px;
+		margin-right: 10px;
+		width: 1px;
+		height: 20px;
+		background-color: $second;
+	}
+	&-inform{
+		color: darken($second, 10%);
+		min-height: $inform-size;
+		min-width: $inform-size;
+		max-height: $inform-size;
+		max-width: $inform-size;
+		position: relative;
+		background-color: rgba(255,255,255,0.6);
+		border: 2px solid rgba(255,255,255,0.3);
+		border-radius: 50%;
+		&:after{
+			content: "i";
+			position: absolute;
+			font-size: 10px;
+			font-style: italic;
+			font-weight: bold;
+			font-family: "Georgia", serif;
+			@include absolute-center;
+		}
+	}
+}
+
+.eventTable{
+	background-color: #281420;
+	margin-bottom: 10px;
+	&__row{
+		display: flex;
+		align-items: center;
+		width: 100%;
+		flex-wrap: wrap;
+	}
+	&__cell{
+		height: 34px;
+		flex: 1 1 25%;
+		min-width: 25%;
+		margin-right: 1px;
+		margin-bottom: 1px;
+		&:last-child{
+			margin-right: 0;
+		}
+	}
+}

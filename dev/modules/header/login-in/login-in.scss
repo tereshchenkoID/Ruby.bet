@@ -1,22 +1,22 @@
 .login-in{
-	&-price,
-	&-deposit{
+	&__price,
+	&__deposit{
 		font-size: 18px;
 		font-weight: bold;
 	}
-	&-price{
+	&__price{
 		text-transform: uppercase
 	}
-	&-deposit{
+	&__deposit{
 		color: $primary
 	}
-	&-img{
+	&__img{
 		width: 60px;
 		height: 60px;
 		position: relative;
 		text-align: center;
 	}
-	&-circle{
+	&__circle{
 		position: absolute;
 		right: 0;
 		bottom: 0;

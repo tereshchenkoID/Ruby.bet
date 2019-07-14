@@ -1,13 +1,14 @@
-.sign-in{
-	&-wrapper{
+.login{
+	&__wrapper{
 		width: 130px;
 		margin-right: 5px;
 	}
-	&-field{
+	&__field{
 		background-color: #fff;
 		border: 1px solid #bbbbbb;
 	}
-	&-button{
+	&__button{
+		text-align: center;
 		&:before{
 			content: '\f105';
 			width: 20px;
@@ -15,7 +16,7 @@
 			font-size: 20px;
 		}
 	}
-	&-link{
+	&__link{
 		position: absolute;
 		bottom: -15px;
 		left: 0;

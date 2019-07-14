@@ -1,0 +1,210 @@
+.scoreboard{
+	margin-bottom: 10px;
+	position: relative;
+}
+.scorebordImg{
+	position: relative;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	&:after{
+		content: "";
+		left: 0;
+		right: 0;
+		bottom: 0;
+		top: 0;
+		z-index: 0;
+		position: absolute;
+		background-color: rgba(0, 0, 0, 0.5);
+	}
+}
+.scoreboardMenu{
+	background-color: #343341;
+	padding: 10px;
+	height: $base-height;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	position: relative;
+	*{
+		color: #fff!important;
+	}
+	&__wrapper{
+		&.big{
+			max-width: 90%;
+			flex-grow: 1;
+		}
+	}
+	&__link{
+		margin-left: 10px;
+		&:before{
+			font-size: 18px;
+		}
+	}
+	.scoreboardIcon{
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+.scoreboardToggle{
+	position: absolute;
+	right: 0;
+	top: 100%;
+	z-index: 2;
+	max-height: 200px;
+	max-width: 300px;
+	overflow-y: auto;
+	&.block{
+		display: block;
+	}
+	&.none{
+		display: none;
+	}
+	&__item{
+		cursor: pointer;
+		width: 100%;
+		padding: 5px 10px;
+		background-color: #0c2029;
+		border-bottom: 1px solid #0a3343;
+		&:hover,
+		&.active{
+			background-color: #0a3343;
+			*{
+				color: #fff;
+			}
+		}
+		*{
+			color: $m-white;
+		}
+		.scoreboardIcon{
+			margin-left: 0;
+			margin-right: 5px;
+		}
+	}
+}
+.scoreboardHide{
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	font-size: 12px;
+	padding: 5px 10px;
+	cursor: pointer;
+	z-index: 9;
+	color: rgba(255, 255, 255, 0.6);
+	background-color: rgba(0, 0, 0, 0.8);
+	&:hover{
+		color: #fff;
+	}
+}
+.scoreboardScreen{
+	padding: 5% 0;
+	position: relative;
+	.table{
+		display: table;
+		border-collapse: collapse;
+		margin-bottom: 0;
+		background-color: rgba(0,0,0,0);
+		width: 100%;
+		max-width: 80%;
+		margin: 0 auto;
+		&__row{
+			width: 100%;
+			display: table-row;
+			background-color: rgba(0,0,0,0.5);
+			&.title{
+				background-color: $primary;
+			}
+		}
+		&__cell{
+			border: 1px solid rgba(255,255,255,0.2);
+			text-align: center;
+			display: table-cell;
+			padding: 5px;
+			vertical-align: middle;
+			min-width: 40px;
+		}
+	}
+}
+.scoreboardCount{
+	margin-bottom: 20px;
+	&__item{
+		color: #fff;
+		margin: 0 10px;
+		&.small{
+			font-size: 22px;
+		}
+		&.big{
+			font-size: 32px;
+		}
+	}
+}
+.scoreboardBadge{
+	height: 8px;
+	width: 8px;
+	border: 1px solid #000;
+	margin: 0 5px;
+	&.primary{
+		background-color: grey;
+	}
+	&.second{
+		background-color: yellow;
+	}
+}
+.scoreboardIcon{
+	margin: 0 auto;
+	width: 17px;
+	height: 15px;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	background-image: url('../img/icon-sport/scoreboard.svg');
+	&.corner{
+		background-position: 0 1px;
+	}
+	&.yellow-card{
+		background-position: -1px -29px;
+	}
+	&.red-card{
+		background-position: 0 -59px;
+	}
+	&.arrow{
+		width: 19px;
+		height: 18px;
+		background-position: 0 -88px;
+	}
+	&.free-kick{
+		width: 20px;
+		height: 20px;
+		background-position: 0 -115px;
+	}
+	&.goalkeeper-kick{
+		width: 18px;
+		height: 18px;
+		background-position: 0 -147px;
+	}
+	&.two-arrow{
+		width: 20px;
+		background-position: 0 -179px;
+	}
+	&.goal{
+		width: 20px;
+		height: 16px;
+		background-position: 0 -207px;
+	}
+	&.penalty{
+		width: 20px;
+		height: 16px;
+		background-position: 0 -237px;
+	}
+}
+.scoreboardText{
+	&.primary{
+		color: #fff;
+	}
+	&.second{
+		color: yellow;
+	}
+}
