@@ -232,6 +232,23 @@ Base.prototype.s_SS = function(data, separate){
 	}
 }
 
+Base.prototype.s_SS_set  = function(data, count){
+	var scoreFirst = [];
+	var scoreSecond = [];
+	var res = data.split(',');
+	if (res.length > 0) {
+		for (var i = 0; i < res.length; i++) {
+			var a = res[i].split('-');
+			scoreFirst.push(a[0]);
+			scoreSecond.push(a[1]);
+		}
+	}
+	if (count == 1)
+		return scoreFirst;
+	else
+		return scoreSecond;
+}
+
 
 Base.prototype.getCookie = function(name) {
   var matches = document.cookie.match(new RegExp(
@@ -240,5 +257,9 @@ Base.prototype.getCookie = function(name) {
   return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
+
+Base.prototype.checkValue = function(obj, value){
+	return obj.hasOwnProperty(value)
+}
 
 var base = new Base();

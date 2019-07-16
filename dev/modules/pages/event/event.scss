@@ -1,5 +1,5 @@
 $inform-size: 16px;
-.information{
+.eventInformation{
 	padding: 10px;
 	height: calc(100% - 1px);
 	position: relative;
@@ -9,7 +9,7 @@ $inform-size: 16px;
 			color: #731225;
 		}
 	}
-	&-icon{
+	&__icon{
 		color: #fff;
 		margin-right: 5px;
 		&.star{
@@ -18,7 +18,7 @@ $inform-size: 16px;
 			}
 		}
 	}
-	&-separate{
+	&__separate{
 		border: 0;
 		margin-left: 10px;
 		margin-right: 10px;
@@ -26,7 +26,7 @@ $inform-size: 16px;
 		height: 20px;
 		background-color: $second;
 	}
-	&-inform{
+	&__inform{
 		color: darken($second, 10%);
 		min-height: $inform-size;
 		min-width: $inform-size;

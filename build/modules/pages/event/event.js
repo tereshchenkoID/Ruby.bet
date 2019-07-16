@@ -25,11 +25,11 @@ Event.prototype.forEventCategoryTemplate = function(data){
 Event.prototype.forEventSubCategoryTemplate = function(data){
 	return `<div class="eventTable__row">
 				<div class="eventTable__cell">
-					<div class="information flex-container align-middle">
-						<span class="information-icon star"></span>
-						<span class="information-text font white ellipsis">${data.NA}</span>
-						<hr class="information-separate">
-						<a class="information-inform"></a>
+					<div class="flex-container align-middle eventInformation">
+						<span class="star eventInformation__icon"></span>
+						<span class="font white ellipsis eventInformation__text">${data.NA}</span>
+						<hr class="eventInformation__separate">
+						<a class="eventInformation__inform"></a>
 					</div>
 				</div>
 			</div>`;

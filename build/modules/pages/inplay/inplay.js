@@ -63,41 +63,38 @@ Inplay.prototype.forSetTemplate = function(data, self, play){
 	var html = '';
 	html = `<div class="inplayTeamTime">
 				<div class="text-center">
-					<p class="font team-period">${self.separateScoreTennis(data.SS, 1).length} Set</p>
+					<p class="font team-period">${base.s_SS_set(data.SS, 1).length} Set</p>
 				</div>
 			</div>
-			<div class="inplayTeamScoreInfo">
-				<p class="font ellipsis text-left team-name">${self.separateTeam(data.NA)[0]}</p>
-				<p class="font ellipsis text-left team-name">${self.separateTeam(data.NA)[1]}</p>
-			</div>
+			<a class="inplayTeamScoreInfo" data-fi="${data.FI}" href="/#/event/">
+				<p class="font ellipsis text-left team-name">${base.s_NA(data.NA)[0]}</p>
+				<p class="font ellipsis text-left team-name">${base.s_NA(data.NA)[1]}</p>
+			</a>
 			<table class="inplayTeamScoreTableInfo">
 				<tr>
-					<td>`;
-						if (data.PI[0] == 1)
-							html += '<div class="circle"></div>';
-			html += `</td>`;
-					$.each(self.separateScoreTennis(data.SS, 1), function (index, item) {
+					<td>
+						${data.PI[0] == 1 ? `<div class="circle"></div>` : ``}
+					</td>`;
+					$.each(base.s_SS_set(data.SS, 1), function (index, item) {
 						html += `<td>
 									<p class="font primary">${item}</p>
 								</td>`;
 					});
 			html += `<td>
-						<p class="font">${self.separateScore(data.XP)[0]}</p>
+						<p class="font">${base.s_SS(data.XP)[0]}</p>
 					</td>
 				</tr>
 				<tr>
-					<td>`;
-						if (data.PI[1] == 1)
-							html += '<div class="circle"></div>';
-			html +=	`</td>`;
-					$.each(self.separateScoreTennis(data.SS, 2), function (index, item) {
+					<td>
+						${data.PI[2] == 1 ? `<div class="circle"></div>` : ``}
+					</td>`;
+					$.each(base.s_SS_set(data.SS, 2), function (index, item) {
 						html += `<td>
 									<p class="font primary">${item}</p>
 								</td>`;
 					});
-
 			html += `<td>
-						<p class="font">${self.separateScore(data.XP)[1]}</p>
+						<p class="font">${base.s_SS(data.XP)[1]}</p>
 					</td>
 				</tr>
 			</table>
@@ -343,30 +340,9 @@ Inplay.prototype.startTimer = function(){
 	}, 500);
 };
 
-Inplay.prototype.checkValue = function(obj, value){
-	return obj.hasOwnProperty(value)
-}
-
 Inplay.prototype.separateScoreCricket = function(data){
 	var score = data.split(',');
 	return score;
-}
-
-Inplay.prototype.separateScoreTennis  = function(data, count){
-	var scoreFirst = [];
-	var scoreSecond = [];
-	var res = data.split(',');
-	if (res.length > 0) {
-		for (var i = 0; i < res.length; i++) {
-			var a = res[i].split('-');
-			scoreFirst.push(a[0]);
-			scoreSecond.push(a[1]);
-		}
-	}
-	if (count == 1)
-		return scoreFirst;
-	else
-		return scoreSecond;
 }
 
 Inplay.prototype.loadData = function(data){
@@ -413,17 +389,17 @@ Inplay.prototype.drawData = function(){
 			var catIt = item.IT;
 			var play = item.NA
 			$.each(item.CT, function (index, item) {
-				if (self.checkValue(item, 'NA')) {
+				if (base.checkValue(item, 'NA')) {
 					self.html += self.inplaySubCategoryTemplate(item.NA, item.IT, catIt)
 					$.each(item.EV, function(index, item){
-						if (self.checkValue(item, 'NA')) {
+						if (base.checkValue(item, 'NA')) {
 							self.html += self.resultsInplayTemplate(item, play, catIt)
 						}
 					});
 				}
 				else{
 					$.each(item.EV, function(index, item){
-						if (self.checkValue(item, 'NA')) {
+						if (base.checkValue(item, 'NA')) {
 							self.html += self.resultsInplayTemplate(item, play)
 						}
 					});
