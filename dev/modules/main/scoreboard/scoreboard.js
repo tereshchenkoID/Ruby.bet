@@ -2,14 +2,15 @@ var Scoreboard = function(){
 	this.html = '';
 }
 
-Scoreboard.prototype.forScoreboardTemplate = function(data){
+Scoreboard.prototype.forScoreboardTemplate = function(ev, te){
+	console.log(te)
 	return `<div class="scorebordImg" style="background-image: url(../img/scoreboard/1.png)"></div>
 
 			<div class="scoreboardMenu">
 				<div class="flex-container align-middle scoreboardMenu__wrapper big">
-					<p class="sports-${data.EV.SI}"></p>
-					<p class="font primary ml text-transform">${data.EV.SN}:</p>
-					<p class="font ellipsis ml">${data.EV.CT}</p>
+					<p class="sports-${ev.SI}"></p>
+					<p class="font primary ml text-transform">${ev.SN}:</p>
+					<p class="font ellipsis ml">${ev.CT}</p>
 				</div>
 				<p class="font text-nowrap">2nd Half 68:02</p>
 			</div>
@@ -17,9 +18,9 @@ Scoreboard.prototype.forScoreboardTemplate = function(data){
 			<div class="scoreboardScreen">
 				<div class="font scoreboardHide">Hide</div>
 				<div class="scoreboardCount flex-container align-center-middle">
-					<p class="font scoreboardCount__item small">${data.TE[0].NA}</p>
-					<p class="font bold scoreboardCount__item big">${data.EV.SS}</p>
-					<p class="font scoreboardCount__item small">${data.TE[1].NA}</p>
+					<p class="font scoreboardCount__item small">${te[0].NA}</p>
+					<p class="font bold scoreboardCount__item big">${ev.SS}</p>
+					<p class="font scoreboardCount__item small">${te[1].NA}</p>
 				</div>
 				<div class="table">
 					<div class="table__row title">
@@ -37,7 +38,7 @@ Scoreboard.prototype.forScoreboardTemplate = function(data){
 						<div class="table__cell">
 							<div class="flex-container align-middle">
 								<p class="scoreboardBadge primary"></p>
-								<p class="font text-left scoreboardText primary">${data.TE[0].NA}</p>
+								<p class="font text-left scoreboardText primary">${te[0].NA}</p>
 							</div>
 						</div>
 						<div class="table__cell"><p class="font scoreboardText primary">20</p></div>
@@ -53,7 +54,7 @@ Scoreboard.prototype.forScoreboardTemplate = function(data){
 						<div class="table__cell">
 							<div class="flex-container align-middle">
 								<p class="scoreboardBadge second"></p>
-								<p class="font text-left scoreboardText primary">${data.TE[1].NA}</p>
+								<p class="font text-left scoreboardText primary">${te[1].NA}</p>
 							</div>
 						</div>
 						<div class="table__cell"><p class="font scoreboardText primary">11</p></div>
@@ -92,8 +93,8 @@ Scoreboard.prototype.forScoreboardTemplate = function(data){
 			</div>`;
 }
 
-Scoreboard.prototype.drawData = function(data){
-	this.html += this.forScoreboardTemplate(data);
+Scoreboard.prototype.drawData = function(ev, te){
+	this.html += this.forScoreboardTemplate(ev, te);
 	return this.html;
 };
 var scoreboard = new Scoreboard();

@@ -22,6 +22,11 @@
 
 @import './dev/style/parts/languages';
 @import './dev/style/parts/play';
+@import './dev/style/parts/banner';
+@import './dev/style/components/table';
+
+
+@import './dev/style/parts/ma_table';
 
 $header: './dev/modules/header/';
 /* Header */
@@ -47,8 +52,7 @@ $header: './dev/modules/header/';
 
 @import './dev/modules/pages/inplay/inplay';
 @import './dev/modules/pages/event/event';
-
-
+@import './dev/modules/pages/prematch/prematch';
 
 /* Footer */
 @import './dev/modules/footer/footer';

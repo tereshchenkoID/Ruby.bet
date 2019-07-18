@@ -133,12 +133,24 @@
 	margin-bottom: 20px;
 	&__item{
 		color: #fff;
-		margin: 0 10px;
 		&.small{
 			font-size: 22px;
+			flex: 1 1 45%;
+			max-width: 45%;
+			&:first-child{
+				text-align: right;
+				padding-left: 10px;
+			}
+			&:last-child{
+				text-align: left;
+				padding-right: 10px;
+			}
 		}
 		&.big{
 			font-size: 32px;
+			max-width: 10%;
+			flex: 1 1 10%;
+			text-align: center;
 		}
 	}
 }

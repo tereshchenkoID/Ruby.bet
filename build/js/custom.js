@@ -101,6 +101,33 @@ var Load = function(){
 					"css": false,
 					"lang": false
 				}
+			},
+			"prematch":{
+				"hot-news": { 
+					"wrap": "#prematch-forMainHotNews",
+					"css": false,
+					"lang": false
+				},
+				"favourite": { 
+					"wrap": "#prematch-forMainFavourite",
+					"css": false,
+					"lang": false
+				},
+				"classification": { 
+					"wrap": "#prematch-forMainClassification",
+					"css": false,
+					"lang": false
+				},
+				"search": {
+					"wrap": "#prematch-forSearch",
+					"css": false,
+					"lang": false
+				},
+				"betslip": {
+					"wrap": "#prematch-forBetslip",
+					"css": false,
+					"lang": false
+				}
 			}
 		}
 	};
@@ -261,5 +288,18 @@ Base.prototype.getCookie = function(name) {
 Base.prototype.checkValue = function(obj, value){
 	return obj.hasOwnProperty(value)
 }
+
+Base.prototype.g_TU = function(etu) {
+	etu = etu.toString();
+	years = etu.substring(0,4); 
+	month = etu.substring(4,6); 
+	day = etu.substring(6,8);
+	hours = etu.substring (8,10);
+	minute = etu.substring(10,12);
+	second = etu.substring(12,14);
+	date = years+'-'+month+'-'+day+' '+hours+':'+minute+':'+second;
+	return date;
+}
+
 
 var base = new Base();

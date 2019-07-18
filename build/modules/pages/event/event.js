@@ -11,42 +11,42 @@ Event.prototype.loadData = function(data){
 	});
 }
 
-Event.prototype.forEventCategoryTemplate = function(data){
-	return `<div class="eventTable__row">
-				<div class="eventTable__cell">
-					<div class="table-category closed">
-						<p class="table-category-icon fa fa-usd"></p>
-						<p class="table-category-text font">MAIN BETS</p>
+Event.prototype.forEventCategoryTemplate = function(){
+	return `<div class="maTable__row">
+				<div class="maTable__cell">
+					<div class="maTable__category closed">
+						<p class="icon fa fa-usd"></p>
+						<p class="text font">MAIN BETS</p>
 					</div>
 				</div>
 			</div>`;
 }
 
 Event.prototype.forEventSubCategoryTemplate = function(data){
-	return `<div class="eventTable__row">
-				<div class="eventTable__cell">
-					<div class="flex-container align-middle eventInformation">
-						<span class="star eventInformation__icon"></span>
-						<span class="font white ellipsis eventInformation__text">${data.NA}</span>
-						<hr class="eventInformation__separate">
-						<a class="eventInformation__inform"></a>
-					</div>
+	return `<div class="maTable__cell full">
+				<div class="flex-container align-middle maInfo">
+					<span class="star maInfo__icon"></span>
+					<span class="font white ellipsis maInfo__text">${data.NA}</span>
+					<hr class="maInfo__separate">
+					<a class="maInfo__inform"></a>
 				</div>
 			</div>`;
 }
 
 Event.prototype.forEventDataTemplate = function(data){
-	var html = '';
-	html += `<div class="eventTable__row" data-it="${data.IT}">`;
-				$.each(data.PA, function (index, item) {
-					html += `<div class="eventTable__cell">
-								<button class="button coefficient">
-									<span class="font ellipsis">${item.NA}</span>
-									<span class="font up blick">${item.OD.D}</span>
-								</button>
-							</div>`;
-				});
-	html += `</div>`;
+	var html = '', SU;
+	SU = (data.SU == 1) ? 'disabled' : '';
+	$.each(data.PA, function (index, item) {
+		html += `<div class="maTable__cell">
+					<button class="button coefficient ${SU}" data-it="${item.IT}">
+						<p class="font ellipsis mra">${item.NA}</p>`;
+				if(item.SU == 1)
+					html += `<span class="fa fa-lock lock"></span>`;
+				else
+					html += `<p class="font down blick">${item.OD.D}</p>`;
+		html +=			`</button>
+				</div>`;
+	});
 	return html;
 }
 
@@ -58,11 +58,16 @@ Event.prototype.setData = function(data){
 Event.prototype.drawData = function(){
 	var self = this;
 	this.html = ``;
+	$('#event-forScoreboard').html(scoreboard.drawData(self.date.RESULT[0].EV, self.date.RESULT[0].TE));
+	this.html += self.forEventCategoryTemplate();
 	$.each(self.date.RESULT, function (index, item) {
-		$('#event-forScoreboard').html(scoreboard.drawData(item));
 		$.each(item.MA, function (index, item) {
+			var SU;
+			SU = (item.SU == 1) ? 'disabled' : '';
+			self.html += `<div class="maTable__row ${SU}" data-it="${item.IT}">`;
 			self.html += self.forEventSubCategoryTemplate(item);
 			self.html += self.forEventDataTemplate(item)
+			self.html += `</div>`;
 		});
 	});
 	$('#event-forTable').html(this.html);

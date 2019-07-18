@@ -1,0 +1,36 @@
+.banner{
+	margin-bottom: 10px;
+	&.small{
+		height: 60px;
+		margin-bottom: 10px;
+		* {
+			position: relative;
+			z-index: 2;
+		}
+		.banner{
+			&__title{
+				background-color: $primary;
+				height: 60px;
+				width: 60px;
+				color: #fff;
+				font-size: 28px;
+			}
+			&__text{
+				color: #fff;
+				font-size: 26px;
+				margin-left: 20px;
+				text-transform: uppercase;
+			}
+		}
+	}
+	&__img{
+		width: 100%;
+		position: relative;
+	}
+	&__title{
+		color: $primary;
+	}
+	&__text{
+		color: #fff;
+	}
+}

@@ -135,7 +135,7 @@ Inplay.prototype.mainBets = function(data, self){
 						</button>
 						<div class="flex-container align-middle inplayTeamButtons">`;
 						$.each(data.MA[0].PA, function(index, item){
-							suButton = (item.SU == 1 && suBlock == 1) ? 'disabled' : '';
+							suButton = (item.SU == 1) ? 'disabled' : '';
 							html += `<button class="button coefficient ${suButton}" data-it="${item.IT}">`;				
 									if (index != 1 && data.MA[0].PA.length <= 3 && item.SU == 0) {
 										html += `<p class="star"></p>
